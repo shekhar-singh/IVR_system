@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Address Book</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="/static/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+  <script src="/static/bootstrap.min.js"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Address Book</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+
+      <ul class="nav navbar-nav navbar-right">
+      <li><a href="/contact/create/"><span class="glyphicon glyphicon-plus"></span> Create</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="container">
+   <table class="table table-bordered" style="background-color: white">
+    <thead class="bg-primary">
+      <tr>
+        <th>Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+    {% for contact in contacts %}
+    
+      <tr>
+        <td>{{ contact.name }}</td>
+        <td>
+        <a href="/contact/update/{{contact.id}}/"><button type="button" class="btn btn-info btn-xs">
+          <span class="glyphicon glyphicon-plus"></span> Update
+        </button></a>
+        <a href='/contact/delete/{{contact.id}}/'><button type="button" class="btn btn-danger btn-xs">
+          <span class="glyphicon glyphicon-minus"></span> Delete
+        </button></a>     
+        </td>
+       
+      </tr>
+     {% endfor %}
+
+
+    </tbody>
+  </table>
+  {% if contacts.has_other_pages %}
+  <ul class="pagination">
+    {% if contacts.has_previous %}
+      <li><a href="?page={{ contacts.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in contacts.paginator.page_range %}
+      {% if contacts.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if contacts.has_next %}
+      <li><a href="?page={{ contacts.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+ 
+   </div> 
+ 
+</body>
+</html>

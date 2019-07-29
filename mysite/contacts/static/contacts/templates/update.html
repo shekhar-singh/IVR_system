@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Address Book Create page</title>
+        <!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" /> -->
+        <link href="/static/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="/static/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="/static/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="/static/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+        <link href="/static/plugins.min.css" rel="stylesheet" type="text/css" />
+        <link href="/static/login-2.min.css" rel="stylesheet" type="text/css" />
+</head>
+    <body class=" login">
+        <div class="content">
+            <form class="login-form" action="/update/{{form.instance.id}}/" method="post">
+            {% csrf_token %}
+                <div class = "form-title">
+                    <h3 >Address Book</h3>
+                    
+                </div>
+                <div class="form-group">
+                    <label class="control-label visible-ie8 visible-ie9">User name</label>
+                    {{ form.user }}
+                    <span class="help-block">
+                          {{ form.user.errors.as_text }}
+                      </span> </div>
+                  <div class="form-group">
+                    <label class="control-label visible-ie8 visible-ie9">Email</label>
+                    {{ form.email_id }}
+                    <span class="help-block">
+                          {{ form.email_id.errors.as_text }}
+                      </span> </div>
+
+                      <div class="form-group">
+                    <label class="control-label visible-ie8 visible-ie9">Address</label>
+                    {{ form.address }}
+                    <span class="help-block">
+                          {{ form.address.errors.as_text }}
+                      </span> </div>
+
+                     <div class="form-group">
+                      <label class="control-label visible-ie8 visible-ie9">Phone Number</label>
+                    {{ form.phone_number }}
+                    <span class="help-block">
+                          {{ form.phone_number.errors.as_text }}
+                      </span> </div>
+                <div class="form-actions">          
+                <button type="submit" name="submit" class="btn green btn-info btn-md">Submit</button>        
+         <a href='/'><button type="button" class="btn red btn-success btn-md">Cancel
+        </button></a>
+               </div>
+            </form> 
+        </div>
+       
+    </body>
+
+</html>
