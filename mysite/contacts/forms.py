@@ -1,9 +1,9 @@
 from django import forms
 from django.core.validators import RegexValidator
 from .models import Address
-from django.forms import ModelForm, Textarea,TextInput
+from django.forms import ModelForm, ModelChoiceField, Textarea, TextInput, ModelMultipleChoiceField
 from django.core.exceptions import ValidationError
-
+ 
 class AddressForm(forms.ModelForm):
     class Meta:
         model = Address
@@ -24,5 +24,23 @@ class AddressForm(forms.ModelForm):
             raise ValidationError("Please enter a valid phone number")
         return phone_num
 
-class TargetMembers(forms.Form):
-    members = forms.ModelMultipleChoiceField(queryset=Address.objects.all(), widget=forms.CheckboxSelectMultiple())
+# class TargetMembers(forms.Form):
+#     members = forms.ModelMultipleChoiceField(queryset=Address.objects.all(), widget=forms.CheckboxSelectMultiple())
+
+
+# class AddressPickerForm(forms.ModelForm):
+#     class Meta:
+#         model = Product
+#         fields = ('name', 'phone_number', )
+
+#     def __init__(self, user, *args, **kwargs):
+#         super(AddressPickerForm, self).__init__(*args, **kwargs)
+#         self.queryset = Category.objects.all()
+
+
+    
+# class AddressPickerForm(forms.ModelForm):
+#     Name = ModelMultipleChoiceField(queryset=Address.objects.all())
+#     class Meta:      
+#         model = Address
+#         fields = ('name', 'phone_number',)

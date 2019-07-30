@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from contacts.models import Address
 from django.http import HttpResponseRedirect, HttpResponse
-from contacts.forms import AddressForm
+from contacts.forms import AddressForm #AddressPickerForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
@@ -23,13 +23,16 @@ def create(request):
 def home(request):
     obj = Address.objects.all()
     page = request.GET.get('page', 1)
-    paginator = Paginator(obj, 5)
+    paginator = Paginator(obj, 5) 
+    #form = AddressPickerForm()
+
     try:
         contacts = paginator.page(page)
     except PageNotAnInteger:
         contacts = paginator.page(1)
     except EmptyPage:
         contacts = paginator.page(paginator.num_pages)
+
     return render(request, 'index.html', { 'contacts': contacts })
     
 def delete_contact(request, id):
@@ -70,6 +73,12 @@ def update_page(request, id):
             print(form.errors)
 
 
+def main_view(request):
+    x=request.POST.getlist('checks')
+    print(x)
+
+    return render(request, 'main.html')
+
 # def home(request):
 #     qs = Address.objects.all()
 #     if request.method=='POST':
@@ -84,3 +93,5 @@ def update_page(request, id):
 
 #     #return render_to_response(template_name, {"profile_form": form}, context_instance=RequestContext(request))
 #     return render(request, 'index.html', { 'contacts': form })
+
+
