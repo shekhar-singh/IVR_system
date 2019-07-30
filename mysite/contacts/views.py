@@ -74,10 +74,10 @@ def update_page(request, id):
 
 
 def main_view(request):
-    x=request.POST.getlist('checks')
+    x = request.POST.getlist('checks[]')
     print(x)
 
-    return render(request, 'main.html')
+    return render(request, 'main.html', {'x':x})
 
 # def home(request):
 #     qs = Address.objects.all()
