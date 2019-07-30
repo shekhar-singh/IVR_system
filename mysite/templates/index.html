@@ -8,6 +8,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="/static/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script language="javascript">
+$(function(){
+
+	// add multiple select / deselect functionality
+	$("#selectall").click(function () {
+		  $('.case').attr('checked', this.checked);
+	});
+
+	// if all checkbox are selected, check the selectall checkbox
+	// and viceversa
+	$(".case").click(function(){
+
+		if($(".case").length == $(".case:checked").length) {
+			$("#selectall").attr("checked", "checked");
+		} else {
+			$("#selectall").removeAttr("checked");
+		}
+
+	});
+});
+</script>
   
   <script src="/static/bootstrap.min.js"></script>
 
@@ -37,10 +58,11 @@
 </nav>
 
     <div class="container">
-      {{form}}
+      
    <table class="table table-bordered" style="background-color: white">
     <thead class="bg-primary">
       <tr>
+        <th style="text-align:center"><input type="checkbox" id="selectall"/></th>
         <th>Name</th>
         <th>Action</th>
       </tr>
@@ -87,7 +109,8 @@
     {% endif %}
   </ul>
 {% endif %}
- 
+ <button type="submit" class="btn btn-default btn-success pull-right">Send</button>
+</form>
    </div> 
  
 </body>
