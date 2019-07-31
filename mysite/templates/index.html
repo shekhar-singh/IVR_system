@@ -1,6 +1,6 @@
+{% extends "userauth/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
   <title>Contact List</title>
   <meta charset="utf-8">
@@ -33,31 +33,9 @@ $(function(){
   <script src="/static/bootstrap.min.js"></script>
 
 </head>
-<body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Contacts</a>
-    </div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  {% block body_block %}
 
-
-
-      <ul class="nav navbar-nav navbar-right">
-      <li><a href="/contact/create/">Create <span class="glyphicon glyphicon-plus"></span> </a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-    <div class="container">
   <form role="form" action="/contact/main/" method="post">
     {% csrf_token %}
 
@@ -114,7 +92,5 @@ $(function(){
 {% endif %}
  <button type="submit" class="btn btn-default btn-warning pull-right">Send</button>
 </form>
-   </div> 
  
-</body>
-</html>
+{% endblock %}

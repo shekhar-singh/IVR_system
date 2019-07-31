@@ -1,20 +1,7 @@
+{% extends "userauth/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-     <head>
-        <meta charset="utf-8" />
-        <title>Address Book Create page</title>
-        <!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" /> href="/static/font-awesome.min.css"-->
-        <link href="{% static 'font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'simple-line-icons.min.css'%}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'components.min.css' %}" rel="stylesheet" id="style_components" type="text/css" />
-        <link href="{% static 'plugins.min.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'login-2.min.css' %}" rel="stylesheet" type="text/css" />
-</head>
-    <body class=" login" style="background-color: #2a2f31">
-
-        <div class="content">
+      
+{% block body_block %}
             <form class="login-form" action="/contact/create/" method="post">
             {% csrf_token %}
                 <div class="form-title">
@@ -22,10 +9,10 @@
 
                     
                 </div>
-                <div class="alert alert-danger display-hide">
+               <!--  <div class="alert alert-danger display-hide">
                     <button class="close" data-close="alert"></button>
                     <span> Enter any username and password. </span>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">User name</label>
                     {{ form.name }}
@@ -67,8 +54,4 @@
                
             </form>
           
-        </div>
-       
-    </body>
-
-</html>
+{% endblock %}

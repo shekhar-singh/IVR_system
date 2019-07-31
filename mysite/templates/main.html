@@ -6,8 +6,10 @@
 
 {% for i,j in data %}
 
-<p ><span class="label label-success">{{i}} </span> :<span class="label label-warning"> {{j}}</span> </p></br>
 
+<p ><span class="label label-success">{{i}} </span> :<span class="label label-warning"> {{j}}</span> </p></br>
+{% empty %}
+    <h2 style="font-family: Ubuntu">Sorry, no athletes in this list.</h2>
 
 {% endfor %}
 
@@ -16,3 +18,4 @@
 {% endblock %}
 
 
+ 
