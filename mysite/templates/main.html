@@ -2,11 +2,16 @@
 {% extends "userauth/base.html" %}
 {% block body_block %}
 
-{% for i in x %}
+<h2 style="font-family: Ubuntu">Your calls are added to the queue. We will notify you when completed.</h2>
 
-  {{i}}
+{% for i,j in data %}
+
+<p ><span class="label label-success">{{i}} </span> :<span class="label label-warning"> {{j}}</span> </p></br>
+
 
 {% endfor %}
+
+
 
 {% endblock %}
 

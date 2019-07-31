@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Address Book</title>
+  <title>Contact List</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,7 +43,7 @@ $(function(){
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Address Book</a>
+      <a class="navbar-brand" href="#">Contacts</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -51,7 +51,7 @@ $(function(){
 
 
       <ul class="nav navbar-nav navbar-right">
-      <li><a href="/contact/create/"><span class="glyphicon glyphicon-plus"></span> Create</a></li>
+      <li><a href="/contact/create/">Create <span class="glyphicon glyphicon-plus"></span> </a></li>
       </ul>
     </div>
   </div>
@@ -112,7 +112,7 @@ $(function(){
     {% endif %}
   </ul>
 {% endif %}
- <button type="submit" class="btn btn-default btn-danger pull-right">Send</button>
+ <button type="submit" class="btn btn-default btn-warning pull-right">Send</button>
 </form>
    </div> 
  

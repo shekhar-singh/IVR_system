@@ -6,6 +6,8 @@ from contacts.models import Address
 from django.http import HttpResponseRedirect, HttpResponse
 from contacts.forms import AddressForm #AddressPickerForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+from contacts.tasks import call
 # Create your views here.
 
 def create(request):
@@ -23,7 +25,7 @@ def create(request):
 def home(request):
     obj = Address.objects.all()
     page = request.GET.get('page', 1)
-    paginator = Paginator(obj, 5) 
+    paginator = Paginator(obj, 10) 
     #form = AddressPickerForm()
 
     try:
@@ -74,10 +76,15 @@ def update_page(request, id):
 
 
 def main_view(request):
+    queue = []
     x = request.POST.getlist('checks[]')
-    print(x)
+    for i in x:
+        status=call(i)
+        queue.append(status)
+    #print(x)
 
-    return render(request, 'main.html', {'x':x})
+
+    return render(request, 'main.html', {'data': zip(x, queue)})
 
 # def home(request):
 #     qs = Address.objects.all()
