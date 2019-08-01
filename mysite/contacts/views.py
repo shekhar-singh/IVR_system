@@ -6,6 +6,8 @@ from contacts.models import Address
 from django.http import HttpResponseRedirect, HttpResponse
 from contacts.forms import AddressForm #AddressPickerForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
+
 
 from contacts.tasks import call
 # Create your views here.
@@ -22,8 +24,11 @@ def create(request):
             return HttpResponseRedirect('/contact')
     return render(request, 'address.html', {'form': form})  
 
+@login_required
 def home(request):
-    obj = Address.objects.all()
+    #obj = Address.objects.all()
+    username = request.user.username
+    obj = request.user.address_set.all()
     page = request.GET.get('page', 1)
     paginator = Paginator(obj, 10) 
     #form = AddressPickerForm()
@@ -35,7 +40,7 @@ def home(request):
     except EmptyPage:
         contacts = paginator.page(paginator.num_pages)
 
-    return render(request, 'index.html', { 'contacts': contacts })
+    return render(request, 'index.html', { 'contacts': contacts, 'user':username })
     
 def delete_contact(request, id):
     obj=Address.objects.get(id=id)
