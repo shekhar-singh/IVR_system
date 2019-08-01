@@ -66,6 +66,7 @@ $(function(){
 </nav>
 
     <div class="container">
+	    {% for contact in contacts %}
   <form role="form" action="/contact/main/" method="post">
     {% csrf_token %}
 
@@ -79,8 +80,7 @@ $(function(){
     </thead>
     
     <tbody>
-    {% for contact in contacts %}
-    
+        
       <tr>
         <td align="center"><input type="checkbox" class="case" name="checks[]" value="{{contact.phone_number}}"/></td>
         <td>{{ contact.name }}</td>
@@ -94,6 +94,10 @@ $(function(){
         </td>
        
       </tr>
+	    
+	    {% empty %}
+    <h2 style="font-family: Ubuntu">Sorry, no contact in this list.</h2>
+
      {% endfor %}
 
 
