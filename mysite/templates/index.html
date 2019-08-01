@@ -66,12 +66,14 @@ $(function(){
 </nav>
 
     <div class="container">
-	    {% for contact in contacts %}
+	  
   <form role="form" action="/contact/main/" method="post">
     {% csrf_token %}
-
+    
    <table class="table table-bordered table-hover table-dark" style="background-color: white">
+    
     <thead class="thead-dark" style="background-color: #cecbcb;">
+      
       <tr>
         <th style="text-align:center"><input type="checkbox" id="selectall"/></th>
         <th>Name</th>
@@ -80,7 +82,7 @@ $(function(){
     </thead>
     
     <tbody>
-        
+      {% for contact in contacts %}
       <tr>
         <td align="center"><input type="checkbox" class="case" name="checks[]" value="{{contact.phone_number}}"/></td>
         <td>{{ contact.name }}</td>
@@ -97,12 +99,16 @@ $(function(){
 	    
 	    {% empty %}
     <h2 style="font-family: Ubuntu">Sorry, no contact in this list.</h2>
-
      {% endfor %}
 
 
     </tbody>
   </table>
+
+  
+  <button type="submit" class="btn btn-default btn-warning pull-right">Send</button>
+
+  
   {% if contacts.has_other_pages %}
   <ul class="pagination">
     {% if contacts.has_previous %}
@@ -123,8 +129,9 @@ $(function(){
       <li class="disabled"><span>&raquo;</span></li>
     {% endif %}
   </ul>
+  
 {% endif %}
- <button type="submit" class="btn btn-default btn-warning pull-right">Send</button>
+ 
 </form>
    </div> 
  
