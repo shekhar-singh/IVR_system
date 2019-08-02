@@ -1,5 +1,5 @@
-{% load static %}
 
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,15 +49,12 @@ $(function(){
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-                  {% if user.is_authenticated %}
+                  
+             <li><a href="#">{{user|title}}</a></li>      
             <li><a href="{% url 'userauth:logout' %}">Logout</a></li>
             <li><a href="/contact/create/">Create <span class="glyphicon glyphicon-plus"></span> </a></li>
      
-          {% else %}
-          <li><a class="navbar-link" href="{% url 'userauth:register' %}">Register</a></li>     
-
-          <li><a class="navbar-link" href="{% url 'userauth:user_login' %}">Login</a></li>
-          {% endif %}
+          
 
       
        </ul>
@@ -65,24 +62,27 @@ $(function(){
   </div>
 </nav>
 
-    <div class="container">
-	  
+
   <form role="form" action="/contact/main/" method="post">
     {% csrf_token %}
-    
+
+    <div class="container">
+	    
    <table class="table table-bordered table-hover table-dark" style="background-color: white">
     
     <thead class="thead-dark" style="background-color: #cecbcb;">
       
       <tr>
+
         <th style="text-align:center"><input type="checkbox" id="selectall"/></th>
         <th>Name</th>
         <th>Action</th>
       </tr>
+      {% for contact in contacts %}
     </thead>
     
     <tbody>
-      {% for contact in contacts %}
+      
       <tr>
         <td align="center"><input type="checkbox" class="case" name="checks[]" value="{{contact.phone_number}}"/></td>
         <td>{{ contact.name }}</td>
@@ -133,7 +133,7 @@ $(function(){
 {% endif %}
  
 </form>
-   </div> 
+ </div> 
  
 </body>
 </html>

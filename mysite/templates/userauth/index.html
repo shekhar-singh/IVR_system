@@ -1,8 +1,9 @@
 {% extends "userauth/base.html" %}
+{% block title %}Index{% endblock %}
 {% block body_block %}
 <div class="container">
   <div class="jumbotron">
-    <h1>Welcome ! Hacker !</h1>
+    <h1>Welcome ! </h1>
     {% if user.is_authenticated %}
         <h2>Hello {{ user.username }}</h2>
         <a href="/contact/">AddressBook</a>

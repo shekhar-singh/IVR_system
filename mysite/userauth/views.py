@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 
+
 def index(request):
     return render(request,'userauth/index.html')
 

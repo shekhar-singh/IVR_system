@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 
 from contacts.tasks import call
 # Create your views here.
-
+@login_required
 def create(request):
     form = AddressForm()
     if request.method == 'POST':
@@ -42,6 +42,7 @@ def home(request):
 
     return render(request, 'index.html', { 'contacts': contacts, 'user':username })
     
+@login_required
 def delete_contact(request, id):
     obj=Address.objects.get(id=id)
     obj.delete()
@@ -53,6 +54,7 @@ def delete_contact(request, id):
     'phone_number': Address.objects.get(id=id).phone_number, 'addr_id': obj}     
     return render(request, 'update.html', context)
 
+@login_required
 def update_contact(request,id):
     obj= Address.objects.get(id = id)
     form = AddressForm(instance=obj)
@@ -79,7 +81,7 @@ def update_page(request, id):
         else:
             print(form.errors)
 
-
+@login_required
 def main_view(request):
     queue = []
     x = request.POST.getlist('checks[]')
