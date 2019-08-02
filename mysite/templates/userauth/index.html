@@ -3,13 +3,35 @@
 {% block body_block %}
 <div class="container">
   <div class="jumbotron">
-    <h1>Welcome ! </h1>
+
+<div class="container1">
+	
+	    
     {% if user.is_authenticated %}
-        <h2>Hello {{ user.username }}</h2>
-        <a href="/contact/">AddressBook</a>
+        <h2 style="margin-right: 100px;">Hello {{ user.username | title }}</h2>
+        <a href="/contact/" style="margin-top: -300px; margin-left:180px; color: #0b1117;">AddressBook</a>
     {% else %}
-        <h2>Register or Login if you'd like to</h2>
+        <h2>Register or Login</h2>
     {% endif %}
+	
+	<div class="bird-container1 bird-container1--one">
+		<div class="bird bird--one"></div>
+	</div>
+	
+	<div class="bird-container1 bird-container1--two">
+		<div class="bird bird--two"></div>
+	</div>
+	
+	<div class="bird-container1 bird-container1--three">
+		<div class="bird bird--three"></div>
+	</div>
+	
+	<div class="bird-container1 bird-container1--four">
+		<div class="bird bird--four"></div>
+	</div>
+	
+</div>
+
   </div>
 </div>
 {% endblock %}
