@@ -24,6 +24,8 @@ def register(request):
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileInfoForm(data=request.POST)
+
+        print("====="+str(user_form)+str(profile_form)+"======")
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             user.set_password(user.password)
