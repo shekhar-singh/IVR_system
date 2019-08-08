@@ -4,15 +4,21 @@
 
 <h2 style="font-family: Ubuntu">Your calls are added to the queue. We will notify you when completed.</h2>
 
+
+<div class="container">
+	
+<ul style="list-style-type:disc;">
+
 {% for i,j in data %}
 
 
-<p ><span class="label label-success">{{i}} </span> :<span class="label label-warning"> {{j}}</span> </p></br>
+<li><span class="label label-success">{{i}} </span> :<span class="label label-warning"> {{j}}</span> </li></br>
 {% empty %}
       <h2 style="font-family: Ubuntu">Sorry, nothing in the queue.</h2>
 {% endfor %}
+</ul>
 
-
+</div>
 
 {% endblock %}
 

@@ -1,7 +1,7 @@
 from django import forms
 from django.core.validators import RegexValidator
-from .models import Address
-from django.forms import ModelForm, ModelChoiceField, Textarea, TextInput, ModelMultipleChoiceField
+from .models import Address, AudioFile
+from django.forms import ModelForm, ModelChoiceField, Textarea, TextInput#, ModelMultipleChoiceField
 from django.core.exceptions import ValidationError
  
 class AddressForm(forms.ModelForm):
@@ -23,6 +23,12 @@ class AddressForm(forms.ModelForm):
         except (ValueError, TypeError):
             raise ValidationError("Please enter a valid phone number")
         return phone_num
+
+
+class AudioFileForm(forms.ModelForm):
+    class Meta:
+        model = AudioFile
+        fields = ('speech', 'audio', )
 
 # class TargetMembers(forms.Form):
 #     members = forms.ModelMultipleChoiceField(queryset=Address.objects.all(), widget=forms.CheckboxSelectMultiple())
