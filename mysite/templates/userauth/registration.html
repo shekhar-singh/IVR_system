@@ -1,3 +1,4 @@
+{% load template_style %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
-<title>Bootstrap Simple Registration Form</title>
+<title>Registration Form</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -17,7 +18,7 @@
 }
 
   body{
-    color: #fff;
+    color: ##747171;
     background: #f8fbff;
     font-family: 'Roboto', sans-serif;
   }
@@ -111,25 +112,42 @@
        
     <h2>Register</h2>
     <p class="hint-text">Create your account. It's free and only takes a minute.</p>
-        <div class="form-group">
 
-      {% if registered %}
+              {% if registered %}
 
         <h1>Thank you for registering!</h1>
-      {% else %}
+        <a href="{% url 'userauth:user_login' %}">Login</a>
+               {% else %}
    
+            
           {% csrf_token %}
-          {{ user_form.as_p }}
-          {{ profile_form.as_p }}
 
-   
-    <div class="form-group">
-            <button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
+  <div class="form-group">
+  {{ user_form.username|addcss:"form-control full-width;username"}}
+ </div>
+
+ <div class="form-group">
+  {{ user_form.email|addcss:"form-control full-width;E-mail"}}
+</div>
+
+<div class="form-group">
+  {{ user_form.password|addcss:"form-control full-width;password"}}
+</div>
+
+ <div class="form-group">
+  {{ profile_form.portfolio_site|addcss:"form-control full-width;Portfolio" }}
+</div>
+
+<button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
         </div>
     </form>
-    {% endif %}
-  <div class="text-center">Already have an account? <a href="{% url 'userauth:user_login' %}">Sign in</a></div>
-</div>
+    
+  <div class="text-center">Already have an account? <a href="{% url 'userauth:user_login' %}">Log in</a>
+  </div>
+
+
+
+{% endif %}
 </body>
 </html>                            
 
